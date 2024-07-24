@@ -1,3 +1,12 @@
-/** @format */
+import app from "./src/app";
 
-console.log("hi its backend 3");
+/** @format */
+const startServer = () => {
+  const port = process.env.PORT || 3300;
+
+  app.listen(port, () => {
+    console.log(`Starting server${port}`);
+  });
+};
+
+startServer();
