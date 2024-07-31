@@ -10,7 +10,7 @@ export default function ErrorHandler(
 ) {
   const statusCode = err.statusCode || 500;
   return res.status(statusCode).json({
-    messege: err.messege,
+    message: err.message,
     errorStack: config.env === "development" ? err.stack : "",
   });
 }
