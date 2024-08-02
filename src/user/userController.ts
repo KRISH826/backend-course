@@ -4,7 +4,6 @@ import userModel from "./userSchema";
 import bcrypt from "bcrypt";
 import { sign } from "jsonwebtoken";
 import { config } from "../config/config";
-import { User } from "./userType";
 
 export const userRegister = async (
   req: Request,
