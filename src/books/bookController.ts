@@ -4,6 +4,7 @@ import path from "path";
 import bookModel from "./bookSchema";
 import fs from "node:fs";
 import createHttpError from "http-errors";
+import { AuthRequest } from "../middlewares/authenticate";
 
 export const addBook = async (
   req: Request,
@@ -44,13 +45,17 @@ export const addBook = async (
       format: "pdf",
     });
 
+    const _reqid = req as AuthRequest;
+
     const newBook = await bookModel.create({
       title,
       genre,
-      author: "66aaa632effbef619cef1969",
+      author: _reqid.userId,
       coverImage: uploadResult?.secure_url,
       file: bookFileUpload?.secure_url,
     });
+
+    // delete temp files
 
     fs.promises.unlink(bookFilePath);
     fs.promises.unlink(filepath);
@@ -63,6 +68,4 @@ export const addBook = async (
   } catch (error) {
     return next(createHttpError(500, "error creating book"));
   }
-
-  // delete temp files
 };
