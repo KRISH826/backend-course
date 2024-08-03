@@ -9,6 +9,7 @@ const _config = {
   cloudinaryCloud: process.env.CLOUD_NAME,
   cloudinaryAPI: process.env.CLOUD_API_KEY,
   cloudinarySecret: process.env.CLOUD_API_SECRET_KEY,
+  frontend_url: process.env.FRONTEND_URL,
 };
 
 export const config = Object.freeze(_config);
